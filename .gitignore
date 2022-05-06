@@ -1,0 +1,8 @@
+#dependencies
+node_modules
+
+#misc
+cypress/examples
+.idea/
+*.png
+*.mp4

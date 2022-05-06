@@ -1,0 +1,23 @@
+{
+  "name": "swaglabs",
+  "version": "1.0.0",
+  "description": "test coverage for the core functionality in its business",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "test:headless": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariaMarkel/swaglabs.git"
+  },
+  "author": "Maria Markelova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MariaMarkel/swaglabs/issues"
+  },
+  "homepage": "https://github.com/MariaMarkel/swaglabs#readme",
+  "devDependencies": {
+    "cypress": "^9.6.0"
+  }
+}
