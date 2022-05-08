@@ -2,14 +2,34 @@ import { loginPage } from '../support/pageObjects/loginPage';
 import { homePage } from "../support/pageObjects/homePage";
 
 describe('Login', function () {
-    before (function () {
+    beforeEach (function () {
         cy.visit("/");
         cy.fixture('testData').then(function (data){
             this.data = data;
         })
     })
-    it('log in with valid credentials', function () {
-        loginPage.login(this.data.standardUsername, this.data.password);
+    it('Standard user login with valid credentials', function () {
+        loginPage.login(this.data.standard, this.data.password);
+        homePage.productTitle.should('be.visible');
+    })
+    it('Locked out user login with invalid credentials', function () {
+        loginPage.login(this.data.lockedOut, this.data.password);
+        loginPage.errorMessage.then((innerText) => {
+            expect(innerText.text()).to.include(this.data.errorLockedOut);
+        })
+    })
+    it('Locked out user login with incorrect username', function () {
+        loginPage.login(this.data.incorrectUsername, this.data.password);
+        loginPage.errorMessage.then((innerText) => {
+            expect(innerText.text()).to.include(this.data.errorNoMatch);
+        })
+    })
+    it('Problem user login with valid credentials', function () {
+        loginPage.login(this.data.problem, this.data.password);
+        homePage.productTitle.should('be.visible');
+    })
+    it('Performance glitch login with valid credentials', function () { //takes time to process
+        loginPage.login(this.data.glitch, this.data.password);
         homePage.productTitle.should('be.visible');
     })
 })
