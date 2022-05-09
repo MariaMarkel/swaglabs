@@ -1,13 +1,14 @@
 {
-  "id": 8739,
-  "name": "Jane",
-  "email": "jane@example.com",
   "standard": "standard_user",
   "lockedOut": "locked_out_user",
   "problem": "problem_user",
-  "glitch": "performance_glitch_user",
+  "glitchUser": "performance_glitch_user",
   "incorrectUsername": "incorrect_username",
   "password": "secret_sauce",
   "errorNoMatch": "Epic sadface: Username and password do not match any user in this service",
-  "errorLockedOut": "Epic sadface: Sorry, this user has been locked out."
+  "errorLockedOut": "Epic sadface: Sorry, this user has been locked out.",
+  "optionAZ": "az",
+  "optionZA": "za",
+  "optionLowHigh": "lohi",
+  "optionHighLow": "hilo"
 }

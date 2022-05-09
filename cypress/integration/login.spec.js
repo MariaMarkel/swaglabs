@@ -6,30 +6,30 @@ describe('Login', function () {
         cy.visit("/");
         cy.fixture('testData').then(function (data){
             this.data = data;
-        })
-    })
+        });
+    });
     it('Standard user login with valid credentials', function () {
         loginPage.login(this.data.standard, this.data.password);
         homePage.productTitle.should('be.visible');
-    })
+    });
     it('Locked out user login with invalid credentials', function () {
         loginPage.login(this.data.lockedOut, this.data.password);
         loginPage.errorMessage.then((innerText) => {
             expect(innerText.text()).to.include(this.data.errorLockedOut);
         })
-    })
-    it('Locked out user login with incorrect username', function () {
+    });
+    it('Username and/or password is not matching', function () {
         loginPage.login(this.data.incorrectUsername, this.data.password);
         loginPage.errorMessage.then((innerText) => {
             expect(innerText.text()).to.include(this.data.errorNoMatch);
         })
-    })
+    });
     it('Problem user login with valid credentials', function () {
         loginPage.login(this.data.problem, this.data.password);
         homePage.productTitle.should('be.visible');
-    })
-    it('Performance glitch login with valid credentials', function () { //takes time to process
-        loginPage.login(this.data.glitch, this.data.password);
+    });
+    it('Performance glitch login with valid credentials', function () {
+        loginPage.login(this.data.glitchUser, this.data.password);
         homePage.productTitle.should('be.visible');
-    })
-})
+    });
+});

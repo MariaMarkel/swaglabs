@@ -12,14 +12,5 @@ export class LoginPage {
         this.usernameField.type(username);
         this.passwordField.type(`${password}{enter}`, { log: false });
     }
-    login3UnsuccessfulAttempts (username, password) {
-        loginPage.login(username, password);
-        loginPage.usernameField.clear();
-        loginPage.passwordField.clear();
-        loginPage.login(username, password);
-        loginPage.usernameField.clear();
-        loginPage.passwordField.clear();
-        loginPage.login(username, password);
-    }
 }
 export const loginPage = new LoginPage();
