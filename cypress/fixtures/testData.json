@@ -10,5 +10,11 @@
   "optionAZ": "az",
   "optionZA": "za",
   "optionLowHigh": "lohi",
-  "optionHighLow": "hilo"
+  "optionHighLow": "hilo",
+  "firstName": "Britney",
+  "lastName": "Spears",
+  "zipcode": 11105,
+  "twitterUrl": "https://twitter.com/saucelabs",
+  "facebookUrl": "https://www.facebook.com/saucelabs",
+  "linkedinUrl": "https://www.linkedin.com/company/sauce-labs"
 }

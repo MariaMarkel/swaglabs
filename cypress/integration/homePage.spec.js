@@ -229,20 +229,42 @@ describe('Home page: burger-menu options', function () {
         });
         cy.visit("/");
     });
-    it('', function () {
+    it('Burger menu closes when ALL ITEMS clicked', function () {
         loginPage.login(this.data.standard, this.data.password);
-
+        homePage.burgerMenu.click();
+        homePage.allItemsOption.click();
+        homePage.closeBurgerMenu.should('not.be.visible');
         });
+    it('Burger menu closes when ABOUT clicked', function () {
+        loginPage.login(this.data.standard, this.data.password);
+        homePage.burgerMenu.click();
+        homePage.aboutOption.click();
+        homePage.closeBurgerMenu.should('not.exist');
+    });
+    it('Burger menu closes when RESET APP STATE clicked', function () {
+        loginPage.login(this.data.standard, this.data.password);
+        homePage.burgerMenu.click();
+        homePage.resetAppStateOption.click();
+        homePage.closeBurgerMenu.should('not.be.visible');
+    });
 });
 describe('Home page: social network links', function () {
-    beforeEach(function () {
+    before(function () {
+        cy.visit("/");
         cy.fixture('testData').then(function (data) {
             this.data = data;
+            loginPage.login(this.data.standard, this.data.password);
         });
-        cy.visit("/");
     });
-    it('', function () {
-        loginPage.login(this.data.standard, this.data.password);
-
+    it('Twitter/Facebook//Linkedin links redirect to sauce labs corresponding pages', function () {
+        homePage.twitterLink.then((link) => {
+            expect(link.attr('href')).to.contain(this.data.twitterUrl);
+        });
+        homePage.facebookLink.then((link) => {
+            expect(link.attr('href')).to.contain(this.data.facebookUrl);
+        });
+        homePage.linkedinLink.then((link) => {
+            expect(link.attr('href')).to.contain(this.data.linkedinUrl);
+        });
     });
 });

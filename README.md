@@ -1,26 +1,14 @@
 # Introduction
 Frontend end-to-end automation test suite for the Swag Labs
 app: test coverage for the core functionality in its business
-critical areas.
+critical areas using Cypress.
 
 # Getting Started
 To run tests:
-1.	Clone the project
-2.	npm install
-3.	npm run test (headed mode) / npm run test:headless (headless mode)
+1. Ensure node.js is installed on your machine (https://nodejs.org/en/download/)
+2. Clone the project by using the following command: git clone git@github.com:MariaMarkel/swaglabs.git 
+(Alternatively, copy the SSH or HTTPS link -> IDE of your choice -> Clone -> paste the link in the URL field)
+3. npm install
+4. npm run test (headed mode) / npm run test:headless (headless mode)
 
-To view your run results using Cypress Dashboard:
-
-1. Go to Cypress dashboard -> log in/sign up
-
-2. Set up a new project -> get a unique project id & a key
-
-3. In cypress.json: {"projectId": "yourProjectId"}
-
-4. Run a command: cypress run --record --key yourKey
-
-5. Go to Dashboard/Runs -> click the run to see the results
-
-
-# Contribute
  

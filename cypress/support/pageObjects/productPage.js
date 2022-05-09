@@ -14,5 +14,8 @@ export class ProductPage {
     get backButton () {
         cy.get('#back-to-products');
     }
+    get shoppingCart () {
+        return cy.get('.shopping_cart_badge');
+    }
 }
 export const productPage = new ProductPage();

@@ -9,7 +9,7 @@ describe('Standard user is on Product page', function () {
             this.data = data;
         });
     });
-    it('Verify the product title', function () {
+    it('Verify product title', function () {
         let homePageProductName;
         loginPage.login(this.data.standard, this.data.password);
         homePage.firstProductNameText.then((name) => {
@@ -20,14 +20,14 @@ describe('Standard user is on Product page', function () {
             });
         });
     });
-    it('Verify the product price', function () {
+    it('Verify product price', function () {
         let homePageProductPrice;
         loginPage.login(this.data.standard, this.data.password);
-        homePage.firstProductNameText.then((name) => {
-            //homePageProductName = name.text();
+        homePage.firstProductPrice.then((price) => {
+            homePageProductPrice = price.text();
             homePage.firstProductName.click();
-            productPage.productTitle.should((productName) => {
-                expect(productName.text()).to.eq(homePageProductName);
+            productPage.productPrice.should((productPrice) => {
+                expect(productPrice.text()).to.eq(homePageProductPrice);
             });
         });
     });

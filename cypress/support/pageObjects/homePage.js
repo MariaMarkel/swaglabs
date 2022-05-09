@@ -26,10 +26,53 @@ export class HomePage {
     get burgerMenu () {
         return cy.get('#react-burger-menu-btn');
     }
+    get allItemsOption () {
+        return cy.get('#inventory_sidebar_link');
+    }
+    get resetAppStateOption () {
+        return cy.get('#reset_sidebar_link');
+    }
+    get aboutOption () {
+        return cy.get('#about_sidebar_link');
+    }
+    get closeBurgerMenu () {
+        return cy.get('#react-burger-cross-btn');
+    }
+    get allAddToCartButtons () {
+        return cy.get('.inventory_item>div>div>button');
+    }
+    get shoppingCart () {
+        return cy.get('.shopping_cart_link');
+    }
+    get logoutOption () {
+        return cy.get('#logout_sidebar_link');
+    }
+    get twitterLink () {
+        return cy.get('li.social_twitter>a');
+    }
+    get facebookLink () {
+        return cy.get('li.social_facebook>a');
+    }
+    get linkedinLink () {
+        return cy.get('li.social_linkedin>a');
+    }
 
     sort (option) {
         this.sortDropdown.select(option);
     }
-
+    emptyShoppingCart () {
+        this.shoppingCart.click();
+        cy.contains("Remove").click();
+    }
+    addAndRemoveProduct () {
+        this.firstProductName.click();
+        cy.contains("Add to cart").click();
+        this.shoppingCart.click();
+        cy.contains("Remove").click();
+    }
+    logout () {
+        this.burgerMenu.click();
+        this.logoutOption.click();
+    }
 }
 export const homePage = new HomePage();

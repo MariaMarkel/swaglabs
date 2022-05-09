@@ -1,32 +1,45 @@
 import { loginPage } from '../support/pageObjects/loginPage';
 import { homePage } from "../support/pageObjects/homePage";
 import { productPage } from '../support/pageObjects/productPage';
+import {cartPage} from "../support/pageObjects/cartPage";
+import {checkoutPage} from "../support/pageObjects/checkoutPage";
 
-describe('Cart functionality: standard user', function () {
-    beforeEach(function () {
-        cy.visit("/");
-        cy.fixture('testData').then(function (data) {
-            this.data = data;
-        });
+before(function () {
+    cy.fixture('testData').then(function (data){
+        this.data = data;
     });
-    it('Add to cart from the home page', function () {
+});
+describe('Cart functionality: standard user', function () {
+    beforeEach (function () {
+        cy.visit("/");
         loginPage.login(this.data.standard, this.data.password);
-        homePage.firstProductName.click();
+    });
+    it('Add random product from home page', function () {
+        homePage.allAddToCartButtons.eq(Math.floor(Math.random() * 6)).click();
+        homePage.shoppingCart.should('have.text', 1);
     });
     it('Add to cart from the product page page', function () {
-        loginPage.login(this.data.standard, this.data.password);
         homePage.firstProductName.click();
+        cy.contains("Add to cart").click();
+        productPage.shoppingCart.should('have.text', 1);
     });
     it('Remove product from the cart', function () {
-        loginPage.login(this.data.standard, this.data.password);
-        homePage.firstProductName.click();
+        homePage.addAndRemoveProduct();
+        cartPage.cartQty.should('not.exist');
     });
-    it('Checkout e2e', function () {
-        loginPage.login(this.data.standard, this.data.password);
+    it('Added product is still in shopping cart after logging out', function () {
         homePage.firstProductName.click();
+        cy.contains("Add to cart").click();
+        homePage.logout();
+        loginPage.login(this.data.standard, this.data.password);
+        homePage.shoppingCart.should('have.text', 1)
+    });
+    it('Checkout e2e: happy path', function () {
+        checkoutPage.addProductAndCheckout(this.data.firstName, this.data.lastName, this.data.zipcode);
+        checkoutPage.thankYouForYourOrder.should('be.visible');
     });
     it('Checkout with empty cart', function () {
-        loginPage.login(this.data.standard, this.data.password);
-        homePage.firstProductName.click();
+        checkoutPage.checkoutWithEmptyCart(this.data.firstName, this.data.lastName, this.data.zipcode);
+        checkoutPage.thankYouForYourOrder.should('not.exist');
     });
 });
