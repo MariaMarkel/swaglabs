@@ -13,12 +13,12 @@ describe('Home page products: images', function () {
     it('Standard user home page: each product image is unique', function () {
         loginPage.login(this.data.standard, this.data.password);
         homePage.allProductsImages.each((image) => {
-            const scr = image.prop( 'src');
+            const scr = image.prop( 'src');  //using src property as it is unique for each image
             srcArray.push(scr);
         }).then((array) => {
             array = srcArray;
-            duplicateImages = srcArray.filter(el => srcArray.indexOf(el) !== srcArray.lastIndexOf(el));
-            cy.wrap(duplicateImages.length).should('eq', 0);
+            duplicateImages = srcArray.filter(el => srcArray.indexOf(el) !== srcArray.lastIndexOf(el)); //looking for any duplicates
+            cy.wrap(duplicateImages.length).should('eq', 0);  //no duplicate src = no duplicate images
         });
     });
     it('Problem user home page: each product image is unique', function () {
@@ -31,7 +31,7 @@ describe('Home page products: images', function () {
         }).then((array) => {
             array = srcArray;
             duplicateImages = srcArray.filter(el => srcArray.indexOf(el) !== srcArray.lastIndexOf(el));
-            cy.wrap(duplicateImages.length).should('eq', 0);
+            cy.wrap(duplicateImages.length).should('eq', 0);  // all 6 images are same = 6 duplicates found
         });
     });
     it('Performance glitch user home page: each product image is unique', function () {
@@ -62,8 +62,8 @@ describe('Home page: Standard user can sort products', function () {
         homePage.productNames.each((name) => {
             productNames.push(name.text());
         });
-        productNames = productNames.sort();
-        homePage.sort(this.data.optionAZ);
+        productNames = productNames.sort();  //product names are sorted A to Z
+        homePage.sort(this.data.optionAZ);  //products on home page are sorted A to Z
         homePage.firstProductName.should((innerText) => {
             expect(innerText.text()).to.include(productNames[0]);
         });
@@ -73,7 +73,7 @@ describe('Home page: Standard user can sort products', function () {
         homePage.productNames.each((name) => {
             productNames.push(name.text());
         });
-        productNames = productNames.sort().reverse();
+        productNames = productNames.sort().reverse();  //product names are sorted Z to A
         homePage.sort(this.data.optionZA);
         homePage.firstProductName.should((innerText) => {
             expect(innerText.text()).to.include(productNames[0]);
@@ -85,7 +85,7 @@ describe('Home page: Standard user can sort products', function () {
             productPrices.push(price.text());
         }).then((array) => {
             array = productPrices;
-            productPrices = productPrices.map(el=>el.slice(1)).sort((a,b)=>a-b);
+            productPrices = productPrices.map(el=>el.slice(1)).sort((a,b)=>a-b); //sorted array of numbers -> lowest price to highest price
         });
         homePage.sort(this.data.optionLowHigh);
         homePage.firstProductPrice.should((innerText) => {
@@ -98,7 +98,7 @@ describe('Home page: Standard user can sort products', function () {
             productPrices.push(price.text());
         }).then((array) => {
             array = productPrices;
-            productPrices = productPrices.map(el=>el.slice(1)).sort((a,b)=>a-b).reverse();
+            productPrices = productPrices.map(el=>el.slice(1)).sort((a,b)=>a-b).reverse();  //sorted array of numbers -> highest price to lowest price
         });
         homePage.sort(this.data.optionHighLow);
         homePage.firstProductPrice.should((innerText) => {

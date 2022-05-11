@@ -15,24 +15,24 @@ describe('Cart functionality: standard user', function () {
         loginPage.login(this.data.standard, this.data.password);
     });
     it('Add random product from home page', function () {
-        homePage.allAddToCartButtons.eq(Math.floor(Math.random() * 6)).click();
-        homePage.shoppingCart.should('have.text', 1);
+        homePage.allAddToCartButtons.eq(Math.floor(Math.random() * 6)).click();  //formula generates a random number [0-5] which represents the index of product
+        homePage.shoppingCart.should('have.text', 1);  //1 -> one item is in the cart
     });
     it('Add to cart from the product page page', function () {
         homePage.firstProductName.click();
         cy.contains("Add to cart").click();
-        productPage.shoppingCart.should('have.text', 1);
+        productPage.shoppingCart.should('have.text', 1);  //1 -> one item is in the cart
     });
     it('Remove product from the cart', function () {
         homePage.addAndRemoveProduct();
-        cartPage.cartQty.should('not.exist');
+        cartPage.cartQty.should('not.exist');  //cart is empty -> cart quantity is not displayed
     });
     it('Added product is still in shopping cart after logging out', function () {
         homePage.firstProductName.click();
         cy.contains("Add to cart").click();
         homePage.logout();
         loginPage.login(this.data.standard, this.data.password);
-        homePage.shoppingCart.should('have.text', 1)
+        homePage.shoppingCart.should('have.text', 1);
     });
     it('Checkout e2e: happy path', function () {
         checkoutPage.addProductAndCheckout(this.data.firstName, this.data.lastName, this.data.zipcode);

@@ -5,10 +5,21 @@ critical areas using Cypress.
 
 # Getting Started
 To run tests:
-1. Ensure node.js is installed on your machine (https://nodejs.org/en/download/)
-2. Clone the project by using the following command: git clone git@github.com:MariaMarkel/swaglabs.git 
-(Alternatively, copy the SSH or HTTPS link -> IDE of your choice -> Clone -> paste the link in the URL field)
-3. npm install
-4. npm run test (headed mode) / npm run test:headless (headless mode)
-
+1. Ensure [node.js is installed](https://nodejs.org/en/download/) on your machine
+2. Clone the project using the following command: 
+```bash
+git clone git@github.com:MariaMarkel/swaglabs.git 
+```
+Alternatively, copy the SSH or HTTPS link -> IDE of your choice -> Clone -> paste the link in the URL field
+5. ```python
+   # install all necessary dependencies
+   npm install
+   ```
+6. ```python
+   # run all tests in headed mode
+   npm run test
+   
+   # run all tests in headless mode
+   npm run test:headless 
+    ```
  

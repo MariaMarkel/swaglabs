@@ -16,7 +16,7 @@ describe('Standard user is on Product page', function () {
             homePageProductName = name.text();
             homePage.firstProductName.click();
             productPage.productTitle.should((productName) => {
-                expect(productName.text()).to.eq(homePageProductName);
+                expect(productName.text()).to.eq(homePageProductName);  //names are same
             });
         });
     });
@@ -27,7 +27,7 @@ describe('Standard user is on Product page', function () {
             homePageProductPrice = price.text();
             homePage.firstProductName.click();
             productPage.productPrice.should((productPrice) => {
-                expect(productPrice.text()).to.eq(homePageProductPrice);
+                expect(productPrice.text()).to.eq(homePageProductPrice); // prices are same
             });
         });
     });

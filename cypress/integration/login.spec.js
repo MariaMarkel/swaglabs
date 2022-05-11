@@ -19,7 +19,7 @@ describe('Login', function () {
         })
     });
     it('Username and/or password is not matching', function () {
-        loginPage.login(this.data.incorrectUsername, this.data.password);
+        loginPage.login(this.data.incorrectUsername, this.data.password);  //not in "Accepted usernames"
         loginPage.errorMessage.then((innerText) => {
             expect(innerText.text()).to.include(this.data.errorNoMatch);
         })
@@ -29,7 +29,7 @@ describe('Login', function () {
         homePage.productTitle.should('be.visible');
     });
     it('Performance glitch login with valid credentials', function () {
-        loginPage.login(this.data.glitchUser, this.data.password);
+        loginPage.login(this.data.glitchUser, this.data.password);  //takes extra time to process, but cypress auto waits
         homePage.productTitle.should('be.visible');
     });
 });
