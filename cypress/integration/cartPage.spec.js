@@ -20,7 +20,7 @@ describe('Cart functionality: standard user', function () {
     });
     it('Add to cart from the product page page', function () {
         homePage.firstProductName.click();
-        cy.contains("Add to cart").click();
+        productPage.addToCart.click();
         productPage.shoppingCart.should('have.text', 1);  //1 -> one item is in the cart
     });
     it('Remove product from the cart', function () {
