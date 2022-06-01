@@ -18,7 +18,7 @@ describe('Cart functionality: standard user', function () {
         homePage.allAddToCartButtons.eq(Math.floor(Math.random() * 6)).click();  //formula generates a random number [0-5] which represents the index of product
         homePage.shoppingCart.should('have.text', 1);  //1 -> one item is in the cart
     });
-    it('Add to cart from the product page page', function () {
+    it('Add to cart from the product page', function () {
         homePage.firstProductName.click();
         productPage.addToCart.click();
         productPage.shoppingCart.should('have.text', 1);  //1 -> one item is in the cart
